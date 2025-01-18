@@ -1,8 +1,3 @@
-Voici une version mise à jour de votre fichier `README.md` incluant les informations sur le script que vous avez fourni. Ce script simplifie l'utilisation pour les personnes qui ne souhaitent pas utiliser Apache Ant.
-
----
-
-```markdown
 # **README - Jeu de Stratégie au Tour par Tour**
 
 ---
