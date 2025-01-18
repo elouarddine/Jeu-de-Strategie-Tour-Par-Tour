@@ -1,0 +1,41 @@
+# Ignorer les fichiers .DS_Store générés par macOS
+.DS_Store
+
+# Ignorer les répertoires de dépendances Java (si applicable)
+*.class
+*.jar
+*.war
+*.ear
+
+# Ignorer les fichiers de logs
+*.log
+
+# Ignorer les fichiers générés par l'IDE IntelliJ IDEA
+.idea/
+*.iml
+
+# Ignorer les fichiers générés par Eclipse
+.project
+.classpath
+.settings/
+
+# Ignorer les fichiers générés par NetBeans
+nbproject/
+build/
+dist/
+
+# Ignorer les fichiers de configuration spécifiques aux environnements locaux
+*.swp
+*.swo
+
+# Ignorer les fichiers temporaires
+*.tmp
+*.bak
+*.old
+*.swp
+
+# Ignorer les fichiers binaires compilés
+bin/
+out/
+
+

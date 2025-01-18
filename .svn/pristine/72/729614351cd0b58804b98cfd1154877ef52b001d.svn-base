@@ -1,0 +1,8 @@
+controle
+model
+model.combattantFactory
+model.factoryJoueur
+model.proxy
+utils.configuration
+utils.strategyMessage
+vue

@@ -1,0 +1,125 @@
+
+# **README - Jeu de stratégie au tour par tour**
+
+---
+
+## **1. Informations sur le projet**
+
+### **Auteurs et encadrant**
+Ce projet a été réalisé dans le cadre de la formation en **Licence 3 Informatique** sous la supervision de **[CHARRIER Christophe]**.
+
+- **Étudiants :**
+  - Salah Eddine ELOUARDI - Numéro étudiant : 22110344
+  - Aimad LAHBIB - Numéro étudiant : 22202135
+  - Yassine EL-AASMI - Numéro étudiant : 22011193
+- **Encadrant :**
+  - [CHARRIER Christophe]
+
+Nous exprimons notre gratitude envers notre encadrant pour son soutien et ses conseils précieux tout au long du développement de ce projet.
+
+---
+
+## **2. Description du projet**
+
+Le **Jeu de stratégie au tour par tour** est un jeu compétitif où plusieurs joueurs (humains ou IA) s'affrontent sur une grille en 2D en utilisant des tactiques, des armes, et des stratégies pour éliminer leurs adversaires.
+
+### **Principales fonctionnalités :**
+- **Déplacement :** Se déplacer sur la grille selon les règles du jeu.
+- **Tirs :** Effectuer des tirs horizontaux ou verticaux pour blesser des adversaires.
+- **Mines et bombes :**
+  - *Mines :* Explosent lorsqu’un joueur entre sur la case.
+  - *Bombes :* Explosent après un certain délai ou sous certaines conditions.
+- **Boucliers :** Activer des boucliers pour bloquer les attaques.
+- **Gestion des ressources :**
+  - Utilisation d’énergie pour chaque action.
+  - Reconstitution de l’énergie grâce aux pastilles disponibles sur la grille.
+- **Obstacles :** Des murs bloquent les déplacements et les tirs.
+- **Conditions de victoire :** Le dernier joueur survivant gagne la partie.
+
+---
+
+## **3. Installation et exécution**
+
+### **3.1 Prérequis**
+Avant de commencer, veuillez vous assurer que les outils suivants sont installés :
+- **Java JDK** (version 8 ou supérieure)
+- **Apache Ant** (outil de construction pour projets Java)
+
+### **3.2 Compilation et exécution avec Ant (se deplacer dans le repertoire ou le fichier build.xml existe)**
+
+#### **Compilation**
+Pour compiler le projet, exécutez la commande suivante dans le terminal :
+
+     ant compile
+
+#### **Nettoyage**
+Pour supprimer tous les fichiers générés et réinitialiser l’arborescence, utilisez :
+
+     ant clean
+
+#### **Exécution du jeu**
+Pour lancer le jeu, utilisez on se deplaçant dans le repertoire ou le fichier build.xml existe:
+
+     ant run
+
+> *Le mode de démarrage (console ou graphique) est configurable dans le fichier `config.properties`.*
+
+#### **Exécution des tests unitaires**
+Pour exécuter les tests unitaires, utilisez :
+
+     ant test
+
+> *Cette commande exécute tous les tests unitaires définis et affiche un rapport des résultats.*
+
+#### **Création d’un fichier exécutable**
+Pour générer un fichier `.jar` exécutable, exécutez :
+
+     ant dist 
+
+> *Le fichier exécutable sera généré dans le répertoire `dist/`.*
+
+#### **Génération de la documentation**
+Pour créer la documentation technique (Javadoc), exécutez :
+    
+     ant javadoc
+
+> *Les fichiers Javadoc seront disponibles dans le répertoire `doc/`. Ouvrez `index.html` dans un navigateur pour consulter la documentation.*
+
+---
+
+## **4. Configurations**
+
+Les paramètres du jeu sont définis dans le fichier `config.xml`. Vous pouvez y ajuster :
+- La taille de la grille.
+- Le mode de démarrage (console ou graphique).
+- Les paramètres de l’IA.
+- Les types d'armes et d'explosifs.
+
+---
+
+## **5. Structure du projet**
+
+Le projet suit une architecture MVC avec une organisation modulaire pour faciliter l’évolution et la maintenance.
+
+- **src/** : Contient le code source du projet.
+  - `controleur/` : Gestion des interactions entre la vue et le modèle.
+  - `modele/` : Logique métier, gestion des règles et des données.
+  - `vue/` : Affichage graphique ou en mode console.
+- **config/** : Contient les fichiers de configuration. 
+- **doc/** : Documentation générée par Javadoc.
+- **dist/** : Fichiers exécutables générés.
+
+---
+## **6. Repartition des tâches**
+
+Elouardi : Creation du logique du jeu (model) aide dans l'application des pattern
+Lahbib : Creation de la vue et le côté graphique et controleur
+El-aasmi : application des pattern et creation du fichier parametrable avec le parser (API Sax)
+
+## **7. Remerciements**
+
+Nous remercions toutes les personnes qui ont contribué à la réussite de ce projet, y compris notre encadrant, les membres de l’équipe et nos camarades pour leurs retours constructifs.
+
+---
+
+Ce fichier README fournit un guide complet et structuré pour comprendre, exécuter et personnaliser ce projet.

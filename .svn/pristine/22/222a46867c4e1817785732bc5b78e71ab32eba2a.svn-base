@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="FightingProject" default="test" basedir=".">
+
+    <!-- Propriétés globales -->
+    <property name="src.dir"          location="src"/>
+    <property name="test.dir"         location="test"/>
+    <property name="build.dir"        location="build"/>
+    <property name="classes.dir"      location="${build.dir}/classes"/>
+    <property name="test.classes.dir" location="${build.dir}/test-classes"/>
+    <property name="lib.dir"          location="lib"/>
+    <property name="dist.dir"         location="dist"/>
+    <property name="main.class"       value="model.Main"/>
+    <property name="config.dir"       location="config"/>
+    <property name="resources.dir"    location="ressources"/>
+
+    <!-- Chemin de classe pour les bibliothèques externes -->
+    <path id="classpath">
+        <fileset dir="${lib.dir}/JUnit">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${lib.dir}/mockito">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <!-- Nettoyage des répertoires de build -->
+    <target name="clean">
+        <echo message="Nettoyage du répertoire de build..."/>
+        <delete dir="${build.dir}"/>
+        <!-- Ne pas supprimer le dossier dist pour conserver config.xml -->
+        <!-- <delete dir="${dist.dir}"/> -->
+    </target>
+
+    <!-- Compilation des sources -->
+    <target name="compile" depends="clean">
+        <echo message="Compilation des fichiers sources..."/>
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false" debug="on">
+            <classpath refid="classpath"/>
+        </javac>
+
+        <!-- Copier les fichiers de configuration dans build/classes/config -->
+        <copy todir="${classes.dir}/config">
+            <fileset dir="${config.dir}">
+                <include name="**/*.xml"/>
+            </fileset>
+        </copy>
+
+        <!-- Copier les ressources dans build/classes/ressources -->
+        <copy todir="${classes.dir}/ressources">
+            <fileset dir="${resources.dir}">
+                <include name="**/*.*"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- Compilation des tests -->
+    <target name="compile-tests" depends="compile">
+        <echo message="Compilation des fichiers de test..."/>
+        <mkdir dir="${test.classes.dir}"/>
+        <javac srcdir="${test.dir}" destdir="${test.classes.dir}" includeantruntime="false" debug="on">
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="${classes.dir}"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <!-- Exécution des tests unitaires -->
+    <target name="test" depends="compile-tests">
+        <echo message="Exécution des tests..."/>
+        <mkdir dir="${build.dir}/test-results"/>
+        <junit printsummary="on" haltonfailure="no" dir="${build.dir}/test-results">
+            <!-- Ajout de l'argument JVM pour désactiver le partage de classes -->
+            <jvmarg value="-Xshare:off"/>
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="${classes.dir}"/>
+                <pathelement location="${test.classes.dir}"/>
+            </classpath>
+            <batchtest fork="yes" todir="${build.dir}/test-results">
+                <fileset dir="${test.classes.dir}">
+                    <include name="**/*Test.class"/>
+                </fileset>
+            </batchtest>
+            <formatter type="plain"/>
+            <formatter type="xml"/>
+        </junit>
+    </target>
+
+    <!-- Création du JAR exécutable -->
+    <target name="jar" depends="compile">
+        <echo message="Création du JAR exécutable..."/>
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.dir}/FightingProject.jar">
+            <fileset dir="${classes.dir}"/>
+            <!-- Inclure le fichier config.xml dans le JAR -->
+            <zipfileset dir="${classes.dir}/config" includes="**/*.xml" prefix="config"/>
+            <!-- Inclure les ressources dans le JAR -->
+            <zipfileset dir="${classes.dir}/ressources" includes="**/*.*" prefix="ressources"/>
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+        </jar>
+    </target>
+    
+        <!-- Génération de la documentation Javadoc -->
+    <target name="javadoc" depends="clean">
+        <echo message="Génération de la documentation Javadoc..."/>
+        <mkdir dir="doc"/>
+        <javadoc destdir="doc" sourcepath="${src.dir}" classpathref="classpath"        packagenames="*" access="protected">
+            <!-- Inclure les balises spéciales comme @param, @return, etc. -->
+            <tag name="author" description="Auteur :" scope="all"/>
+            <tag name="version" description="Version :" scope="all"/>
+            <tag name="since" description="Depuis :" scope="all"/>
+            <tag name="see" description="Voir aussi :" scope="all"/>
+            <tag name="deprecated" description="Obsolète :" scope="all"/>
+        </javadoc>
+    </target>
+
+
+    <!-- Exécution de l'application -->
+    <target name="run" depends="jar">
+        <echo message="Exécution de l'application..."/>
+        <java jar="${dist.dir}/FightingProject.jar" fork="true"/>
+    </target>
+
+</project>
+
+

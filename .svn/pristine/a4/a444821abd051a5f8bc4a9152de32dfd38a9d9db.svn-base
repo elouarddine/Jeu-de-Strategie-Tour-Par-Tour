@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Configuration de la grille -->
+    <grille>
+        <dimensions>
+            <largeur>10</largeur> <!-- Largeur initiale de la grille -->
+            <longueur>10</longueur> <!-- Longueur initiale de la grille -->
+        </dimensions>
+        <murs>
+            <nombreMinMur>5</nombreMinMur> <!-- Nombre minimum de murs -->
+            <nombreMaxMur>20</nombreMaxMur> <!-- Nombre maximum de murs -->
+        </murs>
+        <pastilles>
+            <nombreMinPastille>5</nombreMinPastille> <!-- Nombre minimum de pastilles -->
+            <nombreMaxPastille>15</nombreMaxPastille> <!-- Nombre maximum de pastilles -->
+            <energiePastille>10</energiePastille> <!-- Énergie qu'une pastille donne à un combattant -->
+        </pastilles>
+    </grille>
+
+    <!-- Configuration des combattants -->
+    <combattants>
+        <energieInitiale>50</energieInitiale> <!-- Énergie initiale des combattants -->
+    </combattants>
+
+    <!-- Coûts des actions -->
+    <coutsActions>
+        <deplacement>5</deplacement> <!-- Coût en énergie d’un déplacement -->
+        <utilisationBouclier>5</utilisationBouclier> <!-- Coût en énergie d’utiliser le bouclier -->
+    </coutsActions>
+
+    <!-- Configuration des armes -->
+    <munitionArme>
+        <nombreLimite>100</nombreLimite> <!-- Nombre limite de munitions global -->
+    </munitionArme>
+
+    <armes>
+        <pistolet>
+            <porteeArme>3</porteeArme> <!-- Portée maximale -->
+            <degatEnergieArme>10</degatEnergieArme> <!-- Dégâts sur les combattants -->
+            <energieAvecBouclierArme>5</energieAvecBouclierArme> <!-- Énergie utilisée avec bouclier actif -->
+            <munitionArme>50</munitionArme> <!-- Munitions disponibles -->
+        </pistolet>
+        <fusil>
+            <porteeArme>5</porteeArme>
+            <degatEnergieArme>15</degatEnergieArme>
+            <energieAvecBouclierArme>10</energieAvecBouclierArme>
+            <munitionArme>30</munitionArme>
+        </fusil>
+        <mitraillette>
+            <porteeArme>2</porteeArme>
+            <degatEnergieArme>8</degatEnergieArme>
+            <energieAvecBouclierArme>4</energieAvecBouclierArme>
+            <munitionArme>100</munitionArme>
+        </mitraillette>
+        <bazooka>
+            <porteeArme>6</porteeArme>
+            <degatEnergieArme>25</degatEnergieArme>
+            <energieAvecBouclierArme>15</energieAvecBouclierArme>
+            <munitionArme>10</munitionArme>
+        </bazooka>
+    </armes>
+
+    <!-- Configuration des explosifs -->
+    <explosifs>
+        <bombe>
+            <delaiExplosionExplosif>3</delaiExplosionExplosif> <!-- Délai avant explosion -->
+            <impactEnergieExplosif>20</impactEnergieExplosif> <!-- Dégâts sur les combattants -->
+            <impactEnergieAvecBouclierExplosif>10</impactEnergieAvecBouclierExplosif> <!-- Dégâts réduits avec bouclier -->
+            <visibiliteExplosif>totale</visibiliteExplosif> <!-- Visibilité de la bombe -->
+        </bombe>
+        <mine>
+            <delaiExplosionExplosif>0</delaiExplosionExplosif> <!-- Explosion immédiate -->
+            <impactEnergieExplosif>30</impactEnergieExplosif>
+            <impactEnergieAvecBouclierExplosif>15</impactEnergieAvecBouclierExplosif>
+            <visibiliteExplosif>partielle</visibiliteExplosif> <!-- Visibilité de la mine -->
+        </mine>
+    </explosifs>
+</configuration>
